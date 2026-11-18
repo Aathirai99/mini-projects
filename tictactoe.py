@@ -1,4 +1,4 @@
-#Step 2: place a mark 
+#Step 3: Loop and alternate turns
 
 
 starting_board= """ 
@@ -27,6 +27,13 @@ def print_board(boards):
 
 
 print(print_board(board))
-response = input('Pick a square: ')
-board[response] = 'X'
-print(print_board(board))
+turn = 'X'
+while True:
+    response = input(f'{turn}, Pick a square: ')
+    board[response] = turn
+    
+    print(print_board(board))
+    if turn == 'X':
+        turn = 'O'
+    else:
+        turn = 'X'
