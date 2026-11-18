@@ -1,4 +1,4 @@
-#Step 6: detect a tie
+#Step 7: play again
 
 
 starting_board= """ 
@@ -68,30 +68,34 @@ print(print_board(board))
 turn = 'X'
 
 while True:
-    response = input(f'{turn}, Pick a square: ')
-    is_valid_response = reject_bad_input(response)
-    if not is_valid_response:
-        continue
-    board[response] = turn
-        
-    print(print_board(board))
-    is_check_winner = is_winner(turn,board)
-    if is_check_winner:
-        print (f'{turn}!! You are the winner')
-        break
-    if is_tie(board):
-        print ("It's a TIE!")
-        break
-
-
-
+    while True:
+        response = input(f'{turn}, Pick a square: ')
+        is_valid_response = reject_bad_input(response)
+        if not is_valid_response:
+            continue
+        board[response] = turn
             
-
-
+        print(print_board(board))
+        is_check_winner = is_winner(turn,board)
+        if is_check_winner:
+            print (f'{turn}!! You are the winner')
+            break
+        if is_tie(board):
+            print ("It's a TIE!")
+            break
     
-    if turn == 'X':
-        turn = 'O'
-    else:
+        if turn == 'X':
+            turn = 'O'
+        else:
+            turn = 'X'
+
+    if input("Do you want to play again? y/n: ") =='y': 
+        for key in board: 
+            board[key] = ' '
         turn = 'X'
-    
+        print(print_board(board))
+        continue
+    else:
+        print("Thanks for playing, come again later!")
+        break
         
