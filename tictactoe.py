@@ -1,4 +1,5 @@
-# Create the empty board and print it
+#Step 2: place a mark
+
 starting_board= """ 
 {}|{}|{}
 -+-+-
@@ -25,7 +26,6 @@ def print_board(boards):
 
 
 print(print_board(board))
-
-
-
-board['b2'] = 'X'
+response = input('Pick a square: ')
+board[response] = 'X'
+print(print_board(board))
