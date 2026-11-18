@@ -1,4 +1,4 @@
-#Step 3: Loop and alternate turns
+#Step 4: reject bad input
 
 
 starting_board= """ 
@@ -25,15 +25,26 @@ def print_board(boards):
 
     return starting_board.format(*squares)
 
+def reject_bad_input(square):
+    if square in board.keys() and board[square]== ' ':
+        return True
+    else:
+        return False
 
 print(print_board(board))
 turn = 'X'
+
 while True:
     response = input(f'{turn}, Pick a square: ')
+    is_valid_response = reject_bad_input(response)
+    if not is_valid_response:
+        continue
     board[response] = turn
-    
+        
     print(print_board(board))
     if turn == 'X':
         turn = 'O'
     else:
         turn = 'X'
+    
+        
