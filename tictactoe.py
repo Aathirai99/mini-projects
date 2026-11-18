@@ -1,4 +1,4 @@
-#Step 5: detect a win
+#Step 6: detect a tie
 
 
 starting_board= """ 
@@ -43,7 +43,7 @@ def reject_bad_input(square):
 
 
 def is_winner(turn,board):
-    
+
     for line in winning_lines:
         chance = 0
         for l in line: 
@@ -54,6 +54,15 @@ def is_winner(turn,board):
             return True
             
     return False
+
+
+def is_tie(board):
+    for i in board.values():
+        if i == ' ':
+            return False
+
+    return True
+
 
 print(print_board(board))
 turn = 'X'
@@ -70,6 +79,15 @@ while True:
     if is_check_winner:
         print (f'{turn}!! You are the winner')
         break
+    if is_tie(board):
+        print ("It's a TIE!")
+        break
+
+
+
+            
+
+
     
     if turn == 'X':
         turn = 'O'
