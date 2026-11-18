@@ -1,4 +1,5 @@
-#Step 2: place a mark
+#Step 2: place a mark 
+
 
 starting_board= """ 
 {}|{}|{}
