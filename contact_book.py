@@ -1,10 +1,16 @@
 
-contact_book = {}
+import json
+try:
+     with open('contacts.json') as f:
+          contact_book= json.load(f)
+except FileNotFoundError:
+     contact_book ={}
+          
 
 test_inputs = [
     'add\nName: Priya\nPhone: 555-0142',   # saves Priya
     'search Priya',                         # prints Priya: 555-0142
-    'search priya',                         # not found for now, works after .lower()
+    'search priya',                         # prints Priya: 555-0142
     'search',                               # message, no crash
     'add',                                  # message, no crash
     'add Priya 555',                        # message, wrong format
@@ -16,6 +22,12 @@ test_inputs = [
     'delete Priya',                         # deleted
     'list',                                 # prints nothing
 ]
+
+def save_contacts(contact_book):
+     with open('contacts.json', 'w') as f:
+        json.dump(contact_book, f)
+
+
 while True:
     print('\n\n')
     line = input('> ')
@@ -35,6 +47,7 @@ while True:
                 contact_book[name] = phone
                 print("Name updated with", name)
                 print(contact_book)
+                save_contacts(contact_book)
             
         
         
@@ -61,12 +74,13 @@ while True:
 
             if len(response)< 2:
                  print("enter a valid term to delete")
-                 continue
+                 continue 
             
             name =response[1].lower()
             if name in contact_book.keys():
                 del contact_book[name]
                 print("deleted contact", name)
+                save_contacts(contact_book)
 
             else:
                  print("hey the name is not found")
